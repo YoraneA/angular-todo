@@ -1,5 +1,6 @@
 import { Injectable, computed, effect, signal } from '@angular/core';
 import { CreateTodo, Todo } from '../models/todo';
+import { filter } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +26,9 @@ export class TodoService {
       },
     ]);
     console.log('Todo added!', todo);
+  }
+
+  deleteTodo(todo: Todo) {
+    this.#todos.update((todos) => todos.filter((t) => t.id !== todo.id));
   }
 }

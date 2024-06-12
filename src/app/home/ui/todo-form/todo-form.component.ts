@@ -7,10 +7,7 @@ import { CreateTodo, Todo } from '../../../shared/models/todo';
   standalone: true,
   imports: [ReactiveFormsModule],
   template: `
-    <form
-      [formGroup]="todoForm"
-      (ngSubmit)="todoSubmitted.emit(todoForm.getRawValue())"
-    >
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
       <input type="text" formControlName="title" placeholder="title..." />
       <input
         type="text"
@@ -31,4 +28,9 @@ export class TodoFormComponent {
   });
 
   todoSubmitted = output<CreateTodo>();
+
+  onSubmit() {
+    this.todoSubmitted.emit(this.todoForm.getRawValue());
+    this.todoForm.reset();
+  }
 }

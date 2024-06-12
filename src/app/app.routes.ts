@@ -7,7 +7,7 @@ export const routes: Routes = [
   },
   {
     path: 'detail/:id',
-    loadComponent: () => import('./home/home.component'),
+    loadComponent: () => import('./detail/detail.component'),
   },
   {
     path: '',
